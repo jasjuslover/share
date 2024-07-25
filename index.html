@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Share API Example</title>
+</head>
+<body>
+  <button id="shareButton">Share</button>
+
+  <script>
+    document.getElementById('shareButton').addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Check this out!',
+            text: 'Here is some text with line breaks:\n\nLine 1\nLine 2\nLine 3',
+            url: 'https://example.com'
+          });
+          console.log('Share was successful.');
+        } catch (error) {
+          console.error('Sharing failed', error);
+        }
+      } else {
+        console.warn('Web Share API is not supported in this browser.');
+      }
+    });
+  </script>
+</body>
+</html>
